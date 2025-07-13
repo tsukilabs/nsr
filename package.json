@@ -1,0 +1,17 @@
+{
+  "name": "nsr",
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@10.13.1",
+  "license": "AGPL-3.0-only",
+  "private": true,
+  "scripts": {
+    "format": "prettier . --write",
+    "lint": "eslint . --config eslint.config.js"
+  },
+  "devDependencies": {
+    "@tb-dev/eslint-config": "^8.0.0",
+    "eslint": "^9.31.0",
+    "prettier": "^3.6.2"
+  }
+}
