@@ -2,6 +2,8 @@ import { join } from 'node:path';
 import { cwd } from 'node:process';
 import { readdir, stat, writeFile } from 'node:fs/promises';
 
+const NSR = 'https://nil.dev.br/nsr';
+
 const index = [];
 
 const registry = join(cwd(), 'registry');
@@ -14,7 +16,15 @@ async function checkEntry(entry) {
   const path = join(registry, entry);
   const stats = await stat(path);
   if (stats.isDirectory()) {
-    index.push(entry);
+    const about = `${NSR}/${entry}/about.md`;
+    const script = `${NSR}/${entry}/script.lua`;
+    const metadata = `${NSR}/${entry}/metadata.json`;
+    index.push({
+      id: entry,
+      about,
+      script,
+      metadata,
+    });
   }
 }
 

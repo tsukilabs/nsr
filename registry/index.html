@@ -50,11 +50,9 @@
       scripts.forEach(createRow);
 
       async function fetchScript(entry) {
-        const metadataRes = await fetch(`${entry}/metadata.json`);
+        const metadataRes = await fetch(entry.metadata);
         const metadata = await metadataRes.json();
-        const url = `https://nil.dev.br/nsr/${entry}/script.lua`;
-
-        scripts.push({ url, ...metadata });
+        scripts.push({ url: entry.script, ...metadata });
       }
 
       function createRow(script) {
