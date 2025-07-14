@@ -1,6 +1,10 @@
+// Copyright (C) Call of Nil contributors
+// SPDX-License-Identifier: AGPL-3.0-only
+
 import { join } from 'node:path';
+import matter from 'gray-matter';
 import { cwd } from 'node:process';
-import { readdir, stat, writeFile } from 'node:fs/promises';
+import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 
 const NSR = 'https://nil.dev.br/nsr';
 
@@ -16,20 +20,19 @@ async function checkEntry(entry) {
   const path = join(registry, entry);
   const stats = await stat(path);
   if (stats.isDirectory()) {
-    const about = `${NSR}/${entry}/about.md`;
-    const script = `${NSR}/${entry}/script.lua`;
-    const metadata = `${NSR}/${entry}/metadata.json`;
+    const aboutPath = join(path, 'about.md');
+    const about = await readFile(aboutPath, { encoding: 'utf8' });
     index.push({
       id: entry,
-      about,
-      script,
-      metadata,
+      about: `${NSR}/${entry}/about.md`,
+      script: `${NSR}/${entry}/script.lua`,
+      frontmatter: matter(about).data,
     });
   }
 }
 
 async function write() {
-  const path = join(registry, 'index.json');
+  const path = join(registry, 'registry.json');
   const data = JSON.stringify(index, null, 0);
   await writeFile(path, data, { encoding: 'utf8' });
 }

@@ -1,22 +1,15 @@
+<!-- Copyright (C) Call of Nil contributors -->
+<!-- SPDX-License-Identifier: AGPL-3.0-only -->
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="main.js"></script>
     <title>NSR</title>
-
-    <style>
-      body {
-        width: 100vw;
-        height: 100vh;
-      }
-
-      th,
-      td {
-        text-align: start;
-      }
-    </style>
   </head>
 
   <body>
@@ -31,55 +24,5 @@
       </thead>
       <tbody></tbody>
     </table>
-
-    <script type="module">
-      const scripts = [];
-      const indexRes = await fetch('index.json');
-      const index = await indexRes.json();
-      await Promise.all(index.map(fetchScript));
-
-      const collator = new Intl.Collator('en-US', {
-        numeric: true,
-        sensitivity: 'variant',
-        usage: 'sort',
-      });
-
-      scripts.sort((a, b) => collator.compare(a.name, b.name));
-
-      const tbody = document.querySelector('tbody');
-      scripts.forEach(createRow);
-
-      async function fetchScript(entry) {
-        const metadataRes = await fetch(entry.metadata);
-        const metadata = await metadataRes.json();
-        scripts.push({ url: entry.script, ...metadata });
-      }
-
-      function createRow(script) {
-        const row = document.createElement('tr');
-
-        const nameCell = document.createElement('td');
-        const nameAnchor = document.createElement('a');
-        nameAnchor.textContent = script.name;
-        nameAnchor.setAttribute('href', script.url);
-        nameCell.appendChild(nameAnchor);
-        row.appendChild(nameCell);
-
-        const authorCell = document.createElement('td');
-        authorCell.textContent = script.author;
-        row.appendChild(authorCell);
-
-        const versionCell = document.createElement('td');
-        versionCell.textContent = script.version;
-        row.appendChild(versionCell);
-
-        const officialCell = document.createElement('td');
-        const official = script.official ? 'Yes' : 'No';
-        officialCell.textContent = official;
-        row.appendChild(officialCell);
-
-        tbody.appendChild(row);
-      }
-    </script>
   </body>
 </html>

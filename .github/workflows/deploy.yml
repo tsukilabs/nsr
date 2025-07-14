@@ -33,7 +33,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Update index
-        run: node ./scripts/update-index.mjs
+        run: pnpm run update
 
       - name: Format
         run: pnpm run format

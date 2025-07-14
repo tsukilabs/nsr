@@ -19,4 +19,4 @@ workspace.md
 # Others
 .temp
 
-registry/index.json
+**/registry.json

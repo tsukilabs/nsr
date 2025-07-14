@@ -6,4 +6,4 @@ pkg
 LICENSE
 pnpm-lock.yaml
 
-registry/index.json
+**/registry.json
