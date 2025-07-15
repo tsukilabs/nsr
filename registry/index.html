@@ -61,11 +61,18 @@
         row.append(versionCell);
 
         const officialCell = document.createElement('td');
-        const official = script.frontmatter.official ? 'Yes' : 'No';
-        officialCell.textContent = official;
+        officialCell.textContent = boolToStr(script.frontmatter.official);
         row.append(officialCell);
 
+        const readonlyCell = document.createElement('td');
+        readonlyCell.textContent = boolToStr(script.frontmatter.readonly);
+        row.append(readonlyCell);
+
         tbody.append(row);
+      }
+
+      function boolToStr(bool) {
+        return bool ? 'Yes' : 'No';
       }
     </script>
   </head>
