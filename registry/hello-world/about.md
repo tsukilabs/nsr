@@ -1,5 +1,6 @@
 ---
 name: Hello World
+description: Just a Lorem ipsum placeholder
 author: Tsukilabs
 version: 0.1.0
 official: true
