@@ -20,13 +20,13 @@ async function checkEntry(entry) {
   const path = join(registry, entry);
   const stats = await stat(path);
   if (stats.isDirectory()) {
-    const aboutPath = join(path, 'about.md');
-    const about = await readFile(aboutPath, { encoding: 'utf8' });
+    const readmePath = join(path, 'readme.md');
+    const readme = await readFile(readmePath, { encoding: 'utf8' });
     index.push({
       id: entry,
-      about: `${NSR}/${entry}/about.md`,
+      readme: `${NSR}/${entry}/readme.md`,
       script: `${NSR}/${entry}/script.lua`,
-      frontmatter: matter(about).data,
+      frontmatter: matter(readme).data,
     });
   }
 }
