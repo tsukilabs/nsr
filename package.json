@@ -2,19 +2,17 @@
   "name": "nsr",
   "version": "0.1.0",
   "type": "module",
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "license": "AGPL-3.0-only",
   "private": true,
   "scripts": {
-    "format": "prettier . --write",
+    "format": "dprint fmt",
     "lint": "eslint . --config eslint.config.js",
     "update": "node scripts/update.mjs"
   },
   "devDependencies": {
-    "@tb-dev/eslint-config": "^8.0.0",
-    "eslint": "^9.31.0",
-    "gray-matter": "^4.0.3",
-    "prettier": "^3.6.2",
-    "prettier-plugin-css-order": "^2.1.2"
+    "@tb-dev/eslint-config": "^8.0.4",
+    "eslint": "^9.33.0",
+    "gray-matter": "^4.0.3"
   }
 }
