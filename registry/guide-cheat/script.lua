@@ -78,5 +78,6 @@ world:cheat_set_stone(10000)
 world:cheat_set_wood(10000)
 
 --- Spawns a bot.
--- @return {number} Bot id.
-world:cheat_spawn_bot()
+-- @param {name} Bot name
+-- @return {number} Bot id
+world:cheat_spawn_bot("C-3PO")
