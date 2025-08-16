@@ -8,7 +8,14 @@ import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 
 const NSR = 'https://nil.dev.br/nsr';
 
-const index = [];
+interface Entry {
+  id: string;
+  readme: string;
+  script: string;
+  frontmatter: Record<string, unknown>;
+}
+
+const index: Entry[] = [];
 
 const registry = join(cwd(), 'registry');
 const entries = await readdir(registry, { encoding: 'utf8' });
@@ -16,7 +23,7 @@ await Promise.all(entries.map(checkEntry));
 
 await write();
 
-async function checkEntry(entry) {
+async function checkEntry(entry: string) {
   const path = join(registry, entry);
   const stats = await stat(path);
   if (stats.isDirectory()) {

@@ -9,18 +9,6 @@
     <link rel="icon" href="/favicon.png" />
     <title>NSR</title>
 
-    <style>
-      body {
-        width: 100vw;
-        height: 100vh;
-      }
-
-      th,
-      td {
-        text-align: start;
-      }
-    </style>
-
     <script type="module">
       const scripts = [];
       const response = await fetch('registry.json');
@@ -75,6 +63,18 @@
         return bool ? 'Yes' : 'No';
       }
     </script>
+
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      th,
+      td {
+        text-align: start;
+      }
+    </style>
   </head>
 
   <body>
